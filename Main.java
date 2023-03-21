@@ -16,14 +16,19 @@ public class Main {
         int totalPrice = 0;
         int totalAmount = 0;
 
-        while (!isInteger || index < 2) {
+        while (!isInteger || (index < 2)) {
             try {
+                index = 0;
                 for(Fruit f : fruits) {
                     System.out.println(f.index + ") " + f.name + " price: " + f.price + " amount: " + f.amount);
                 }
 
                 System.out.println("Which product do you want to add to your shopping basket? Select by number: ");
                 String next = scanner.next();
+
+                if (next.equals("q")) {
+                    break;
+                }
                 int choice = Integer.parseInt(next);
 
                 System.out.println("How many items of the product would you like to add? Enter in whole number: ");
