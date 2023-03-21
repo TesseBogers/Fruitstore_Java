@@ -16,14 +16,21 @@ public class Main {
         int totalPrice = 0;
         int totalAmount = 0;
         double totalWithTaxes = 0;
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("Welcome to the not so original FruitStore, to exit and go to basket: q + ENTER");
 
-        System.out.println("Welcome to the not so original FruitStore, to exit and go to basket: ENTER q.");
+        for(Fruit f : fruits) {
+            System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price + "\n");
+        }
+
+        apple.price = 0;
+        pear.price = 0;
+        banana.price = 0;
+        grape.price = 0;
+
         while (!isInteger || (index < 2)) {
             try {
                 index = 0;
-                for(Fruit f : fruits) {
-                    System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price );
-                }
 
                 System.out.println("Which product do you want to add to your shopping basket? Select by number: ");
                 String next = scanner.next();
@@ -42,7 +49,7 @@ public class Main {
                     int amountFruit = apple.amount + amount;
                     apple.price = 2;
                     int price = apple.price * amount;
-                    System.out.println("you have " + amountFruit +" " + apple.name + " in your shopping basket");
+                    System.out.println("ADDED TO BASKET: " + amountFruit + " x " + apple.name + "\n");
                     apple.amount = amountFruit;
                     apple.price = price;
                     isInteger = true;
@@ -50,55 +57,66 @@ public class Main {
                     int amountFruit = banana.amount + amount;
                     banana.price = 3;
                     int price = banana.price * amount;
-                    System.out.println("you have " + amountFruit +" " + banana.name + " in your shopping basket");
+                    System.out.println("ADDED TO BASKET: " + amountFruit + " x " + banana.name + "\n");
                     banana.amount = amountFruit;
                     banana.price = price;
                     isInteger = true;
                 } else if (choice == pear.index) {
                     int amountFruit = pear.amount + amount;
-                    System.out.println("you have " + amountFruit +" " + pear.name + " in your shopping basket");
+                    pear.price = 3;
+                    int price = pear.price * amount;
+                    System.out.println("ADDED TO BASKET: " + amountFruit + " x " + pear.name + "\n");
                     pear.amount = amountFruit;
+                    pear.price = price;
                     isInteger = true;
                 } else if (choice == grape.index) {
                     int amountFruit = grape.amount + amount;
-                    System.out.println("You added " + amountFruit +" " + grape.name + " in your shopping basket");
+                    grape.price = 1;
+                    int price = grape.price * amount;
+                    System.out.println("ADDED TO BASKET: " + amountFruit + " x " + grape.name + "\n");
                     grape.amount = amountFruit;
+                    grape.price = price;
                     isInteger = true;
-                } else System.out.println("This input is not an option - Please try again!");
+                } else System.out.println("\nThis input is not an option - Please try again!\n");
 
             } catch (NumberFormatException e ) {
-              System.out.println("This input is not a whole number - Please try again!");
+              System.out.println("\nThis input is not a whole number - Please try again!\n");
             } ++index;
         }
-        System.out.println("You ended the order process, here is your basket: ");
-        for(Fruit f : fruits) {
-            System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price + " \t Quantity: \t" + f.amount);
-            totalPrice += f.price;
-            totalAmount += f.amount;
-            totalWithTaxes = totalPrice * 1.21;
-        }
+        System.out.println("You ended the order process, here is your basket: \n");
+
 
         int temp;
+        int tempQuantity;
         String tempName;
         for (int i = 0; i < fruits.length; i++) {
             for (int j = i+1; j < fruits.length; j++) {
                 if(fruits[i].price < fruits[j].price) {
                     temp = fruits[i].price;
                     tempName = fruits[i].name;
+                    tempQuantity = fruits[i].amount;
+                    fruits[i].amount = fruits[j].amount;
                     fruits[i].price = fruits[j].price;
                     fruits[i].name = fruits[j].name;
                     fruits[j].price = temp;
                     fruits[j].name = tempName;
+                    fruits[j].amount = tempQuantity;
                 }
             }
         }
+        System.out.println("-------------------------------------------------------------------");
+        System.out.println("Fruit\t\t\t  Quantity\t\t\t Price/fruit");
+        System.out.println("-------------------------------------------------------------------");
 
         for (Fruit fruit : fruits) {
-            System.out.print(fruit.price + " " + fruit.name + "\t");
+            System.out.print(fruit.name + "\t\t\t\tx " + fruit.amount+ "\t\t\t\t € "+fruit.price +"\n");
+            totalPrice += fruit.price;
+            totalAmount += fruit.amount;
+            totalWithTaxes = totalPrice * 1.21;
         }
+        System.out.println("-------------------------------------------------------------------");
 
-        System.out.println("\nTotal price of: " + totalPrice);
-        System.out.println("Total price with taxes: " + totalWithTaxes);
-        System.out.println("Total amount of items ordered: " + totalAmount);
+        System.out.println("\t\t\t\t\t" + "x " +  totalAmount+ "\t\t\t\t€ " +totalPrice  + "\n" );
+        System.out.println("\t\t\t\t\t\t\t\t+ 21 %: " + "€ " + totalWithTaxes);
     }
 }
