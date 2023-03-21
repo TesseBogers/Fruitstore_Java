@@ -2,10 +2,10 @@ import java.util.Scanner;
 public class Main {
     public static void main (String[] args) {
 
-        Fruit apple = new Fruit("apple", 0, 0, 1);
-        Fruit banana = new Fruit("banana", 0, 0, 2);
-        Fruit pear = new Fruit("pear", 0, 0, 3);
-        Fruit grape = new Fruit("grape", 0, 0, 4);
+        Fruit apple = new Fruit("Apple", 2, 0, 1);
+        Fruit banana = new Fruit("Banana", 3, 0, 2);
+        Fruit pear = new Fruit("Pear", 4, 0, 3);
+        Fruit grape = new Fruit("Grape", 1, 0, 4);
 
         Fruit[] fruits = {apple, banana, pear, grape};
 
@@ -17,11 +17,12 @@ public class Main {
         int totalAmount = 0;
         double totalWithTaxes = 0;
 
+        System.out.println("Welcome to the not so original FruitStore, to exit and go to basket: ENTER q.");
         while (!isInteger || (index < 2)) {
             try {
                 index = 0;
                 for(Fruit f : fruits) {
-                    System.out.println(f.index + ") " + f.name + " price: " + f.price + " amount: " + f.amount);
+                    System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price );
                 }
 
                 System.out.println("Which product do you want to add to your shopping basket? Select by number: ");
@@ -71,15 +72,33 @@ public class Main {
         }
         System.out.println("You ended the order process, here is your basket: ");
         for(Fruit f : fruits) {
-            System.out.println(f.index + ") " + f.name + " price: " + f.price + " amount: " + f.amount);
+            System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price + " \t Quantity: \t" + f.amount);
             totalPrice += f.price;
             totalAmount += f.amount;
             totalWithTaxes = totalPrice * 1.21;
         }
 
-        System.out.println("Total price of: " + totalPrice);
-        System.out.println("Total price with taxes: " + totalWithTaxes);
+        int temp;
+        String tempName;
+        for (int i = 0; i < fruits.length; i++) {
+            for (int j = i+1; j < fruits.length; j++) {
+                if(fruits[i].price < fruits[j].price) {
+                    temp = fruits[i].price;
+                    tempName = fruits[i].name;
+                    fruits[i].price = fruits[j].price;
+                    fruits[i].name = fruits[j].name;
+                    fruits[j].price = temp;
+                    fruits[j].name = tempName;
+                }
+            }
+        }
 
+        for (Fruit fruit : fruits) {
+            System.out.print(fruit.price + " " + fruit.name + "\t");
+        }
+
+        System.out.println("\nTotal price of: " + totalPrice);
+        System.out.println("Total price with taxes: " + totalWithTaxes);
         System.out.println("Total amount of items ordered: " + totalAmount);
     }
 }
