@@ -15,6 +15,7 @@ public class Main {
         int index = 0;
         int totalPrice = 0;
         int totalAmount = 0;
+        double totalWithTaxes = 0;
 
         while (!isInteger || (index < 2)) {
             try {
@@ -73,8 +74,12 @@ public class Main {
             System.out.println(f.index + ") " + f.name + " price: " + f.price + " amount: " + f.amount);
             totalPrice += f.price;
             totalAmount += f.amount;
+            totalWithTaxes = totalPrice * 1.21;
         }
+
         System.out.println("Total price of: " + totalPrice);
+        System.out.println("Total price with taxes: " + totalWithTaxes);
+
         System.out.println("Total amount of items ordered: " + totalAmount);
     }
 }
