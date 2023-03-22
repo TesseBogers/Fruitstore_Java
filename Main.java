@@ -6,11 +6,11 @@ public class Main {
     static int totalPrice = 0;
     static int totalAmount = 0;
     static double totalWithTaxes = 0;
+    static Scanner scanner = new Scanner(System.in);
 
-    public static int addAmount(String scanner, int fruitAmount) {
-        return fruitAmount + Integer.parseInt(scanner);
+    public static int addAmount(int fruitAmount) {
+        return fruitAmount + Integer.parseInt(scanner.next());
     }
-
     public static int addPrice(int amount, int startPrice, String fruitName) {
         System.out.println("ADDED TO BASKET: " + amount + " x " + fruitName + "\n");
         isInteger = true;
@@ -24,8 +24,6 @@ public class Main {
         Fruit grape = new Fruit("Grape", 1, 0, 4);
 
         Fruit[] fruits = {apple, banana, pear, grape};
-
-        Scanner scanner = new Scanner(System.in);
 
 
         System.out.println("----------------------------------------------------------------------------------");
@@ -53,25 +51,25 @@ public class Main {
                 System.out.println("How many items of the product would you like to add? Enter in whole number: ");
                 switch (choice) {
                     case 1 -> {
-                        int amount = addAmount(scanner.next(), pear.amount);
+                        int amount = addAmount(pear.amount);
                         int price = addPrice(amount, 2, apple.name);
                         apple.amount = amount;
                         apple.price = price;
                     }
                     case 2 -> {
-                        int amount = addAmount(scanner.next(), pear.amount);
+                        int amount = addAmount(pear.amount);
                         int price = addPrice(amount, 3, banana.name);
                         banana.amount = amount;
                         banana.price = price;
                     }
                     case 3 -> {
-                        int amount = addAmount(scanner.next(), pear.amount);
+                        int amount = addAmount(pear.amount);
                         int price = addPrice(amount, 4, pear.name);
                         pear.amount = amount;
                         pear.price = price;
                     }
                     case 4 -> {
-                        int amount = addAmount(scanner.next(), grape.amount);
+                        int amount = addAmount(grape.amount);
                         int price = addPrice(amount, 1, grape.name);
                         grape.amount = amount;
                         grape.price = price;
