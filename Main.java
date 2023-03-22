@@ -1,7 +1,11 @@
 import java.util.Scanner;
 public class Main {
 
-
+    static boolean isInteger = false;
+    static int index = 0;
+    static int totalPrice = 0;
+    static int totalAmount = 0;
+    static double totalWithTaxes = 0;
 
     public static int addAmount(String scanner, int fruitAmount) {
         return fruitAmount + Integer.parseInt(scanner);
@@ -9,6 +13,7 @@ public class Main {
 
     public static int addPrice(int amount, int startPrice, String fruitName) {
         System.out.println("ADDED TO BASKET: " + amount + " x " + fruitName + "\n");
+        isInteger = true;
         return startPrice * amount;
     }
     public static void main (String[] args) {
@@ -22,11 +27,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        boolean isInteger = false;
-        int index = 0;
-        int totalPrice = 0;
-        int totalAmount = 0;
-        double totalWithTaxes = 0;
+
         System.out.println("----------------------------------------------------------------------------------");
         System.out.println("Welcome to the not so original FruitStore, to exit and go to basket: q + ENTER");
 
@@ -42,7 +43,6 @@ public class Main {
         while (!isInteger || (index < 2)) {
             try {
                 index = 0;
-
                 System.out.println("Which product do you want to add to your shopping basket? Select by number: ");
                 String next = scanner.next();
 
@@ -57,28 +57,24 @@ public class Main {
                         int price = addPrice(amount, 2, apple.name);
                         apple.amount = amount;
                         apple.price = price;
-                        isInteger = true;
                     }
                     case 2 -> {
                         int amount = addAmount(scanner.next(), pear.amount);
                         int price = addPrice(amount, 3, banana.name);
                         banana.amount = amount;
                         banana.price = price;
-                        isInteger = true;
                     }
                     case 3 -> {
                         int amount = addAmount(scanner.next(), pear.amount);
                         int price = addPrice(amount, 4, pear.name);
                         pear.amount = amount;
                         pear.price = price;
-                        isInteger = true;
                     }
                     case 4 -> {
                         int amount = addAmount(scanner.next(), grape.amount);
                         int price = addPrice(amount, 1, grape.name);
                         grape.amount = amount;
                         grape.price = price;
-                        isInteger = true;
                     } default -> System.out.println("\nThis input is not an option - Please try again!\n");
                 }
             } catch (NumberFormatException e ) {
