@@ -1,5 +1,11 @@
 import java.util.Scanner;
 public class Main {
+
+
+
+    public static int addAmount(String scanner, int fruitAmount) {
+        return fruitAmount + Integer.parseInt(scanner);
+    }
     public static void main (String[] args) {
 
         Fruit apple = new Fruit("Apple", 2, 0, 1);
@@ -39,66 +45,51 @@ public class Main {
                     break;
                 }
                 int choice = Integer.parseInt(next);
-
-
+                System.out.println("How many items of the product would you like to add? Enter in whole number: ");
                 switch (choice) {
                     case 1 -> {
-                        System.out.println("How many items of the product would you like to add? Enter in whole number: ");
-                        String inputAmount = scanner.next();
-                        int amount = Integer.parseInt(inputAmount);
-                        int amountFruit = apple.amount + amount;
+                        int amount = addAmount(scanner.next(), pear.amount);
                         apple.price = 2;
                         int price = apple.price * amount;
-                        System.out.println("ADDED TO BASKET: " + amountFruit + " x " + apple.name + "\n");
-                        apple.amount = amountFruit;
+                        System.out.println("ADDED TO BASKET: " + amount + " x " + apple.name + "\n");
+                        apple.amount = amount;
                         apple.price = price;
                         isInteger = true;
                     }
                     case 2 -> {
-                        System.out.println("How many items of the product would you like to add? Enter in whole number: ");
-                        String inputAmount = scanner.next();
-                        int amount = Integer.parseInt(inputAmount);
-                        int amountFruit = banana.amount + amount;
+                        int amount = addAmount(scanner.next(), pear.amount);
                         banana.price = 3;
                         int price = banana.price * amount;
-                        System.out.println("ADDED TO BASKET: " + amountFruit + " x " + banana.name + "\n");
-                        banana.amount = amountFruit;
+                        System.out.println("ADDED TO BASKET: " + amount + " x " + banana.name + "\n");
+                        banana.amount = amount;
                         banana.price = price;
                         isInteger = true;
                     }
                     case 3 -> {
-                        System.out.println("How many items of the product would you like to add? Enter in whole number: ");
-                        String inputAmount = scanner.next();
-                        int amount = Integer.parseInt(inputAmount);
-                        int amountFruit = pear.amount + amount;
+                        int amount = addAmount(scanner.next(), pear.amount);
                         pear.price = 3;
                         int price = pear.price * amount;
-                        System.out.println("ADDED TO BASKET: " + amountFruit + " x " + pear.name + "\n");
-                        pear.amount = amountFruit;
+                        System.out.println("ADDED TO BASKET: " + amount + " x " + pear.name + "\n");
+                        pear.amount = amount;
                         pear.price = price;
                         isInteger = true;
                     }
                     case 4 -> {
-                        System.out.println("How many items of the product would you like to add? Enter in whole number: ");
-                        String inputAmount = scanner.next();
-                        int amount = Integer.parseInt(inputAmount);
-                        int amountFruit = grape.amount + amount;
+                        int amount = addAmount(scanner.next(), grape.amount);
                         grape.price = 1;
                         int price = grape.price * amount;
-                        System.out.println("ADDED TO BASKET: " + amountFruit + " x " + grape.name + "\n");
-                        grape.amount = amountFruit;
+                        System.out.println("ADDED TO BASKET: " + amount + " x " + grape.name + "\n");
+                        grape.amount = amount;
                         grape.price = price;
                         isInteger = true;
                     }
                     default -> System.out.println("\nThis input is not an option - Please try again!\n");
                 }
-
             } catch (NumberFormatException e ) {
                 System.out.println("\nThis input is not a whole number - Please try again!\n");
             } ++index;
         }
         System.out.println("You ended the order process, here is your basket: \n");
-
 
         int temp;
         int tempQuantity;
@@ -129,7 +120,6 @@ public class Main {
             totalWithTaxes = totalPrice * 1.21;
         }
         System.out.println("-------------------------------------------------------------------");
-
         System.out.println("\t\t\t\t\t" + "x " +  totalAmount+ "\t\t\t\t€ " +totalPrice  + "\n" );
         System.out.println("\t\t\t\t\t\t\t+ 21 %: " + "€ " + totalWithTaxes);
     }
