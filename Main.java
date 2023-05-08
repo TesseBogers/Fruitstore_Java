@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class Main {
-
     static boolean isInteger = false;
     static int index = 0;
     static int totalPrice = 0;
@@ -22,12 +21,10 @@ public class Main {
         Fruit banana = new Fruit("Banana", 3, 0, 2);
         Fruit pear = new Fruit("Pear", 4, 0, 3);
         Fruit grape = new Fruit("Grape", 1, 0, 4);
-
         Fruit[] fruits = {apple, banana, pear, grape};
 
-
         System.out.println("----------------------------------------------------------------------------------");
-        System.out.println("Welcome to the not so original FruitStore, to exit and go to basket: q + ENTER");
+        System.out.println("Welcome to the FruitStore, to exit and go to basket: q + ENTER");
 
         for(Fruit f : fruits) {
             System.out.println(f.index + ") \t" + f.name + "\tPrice: \t " + "€" +f.price + "\n");
